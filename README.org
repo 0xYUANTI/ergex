@@ -1,0 +1,37 @@
+                         ___ _ __ __ _  _____  __
+                        / _ \ '__/ _` |/ _ \ \/ /
+                       |  __/ | | (_| |  __/>  <
+                        \___|_|  \__, |\___/_/\_\
+                                 |___/
+                   Regex matching over Erlang terms
+
+* Overview
+ergex is a simple regex matcher which operates on Erlang terms -
+currently lists and tuples of atoms and integers - rather than strings
+of characters.
+
+Based on code by Darius Bacon[1, 2].
+
+[1] http://erlang.org/pipermail/erlang-questions/2007-May/026652.html
+[2] https://github.com/gebi/jungerl/tree/master/lib/ergex
+
+* Examples
+Eshell V5.8.4  (abort with ^G)
+1> ergex:matches_p("{0|1, 42+, foo}", {0, 42, 42, foo}).
+true
+2> ergex:all_matches("[quux?, foo*, <atom>]", [foo, foo]).
+[[foo],[]]
+
+* Installation
+jakob@fluffy.primat.es:~/git/ergex$ gmake
+jakob@fluffy.primat.es:~/git/ergex$ gmake test
+
+* Manifest
+src/:
+ergex.erl         -- API
+ergex_lib.erl     -- Library
+ergex_ll.erl      -- Lazy lists
+ergex_matcher.erl -- Engine
+ergex_parser.erl  -- Input language
+
+* eof
